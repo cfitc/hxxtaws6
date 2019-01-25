@@ -44,22 +44,27 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		PortalAPI portalApi = SDK.getPortalAPI();
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("sid", me.getSessionId());
-		result.put("windowTitle", appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.WINDOW_TITLE)); // 窗口标题
+		result.put("windowTitle",
+				appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.WINDOW_TITLE)); // 窗口标题
 		// 特定的背景图片
-		String specificBackGround = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_SPECIFIC_BACKGROUND);
+		String specificBackGround = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				MportalSkinsConstant.METRO_SPECIFIC_BACKGROUND);
 		String metroBackGround = "";
 		// 修改背景图片的提示信息，若为空值，不提供该功能
 		String changeBackGround = "";
 		// 如果未指定特定的背景图片，采用常规背景图片
 		if (UtilString.isEmptyByTrim(specificBackGround)) {
 			// 背景图片
-			metroBackGround = portalApi.getUserProfileItem(MportalSkinsConstant.APP_MPORTALSKINS, me.getUID(), MportalSkinsConstant.METRO_BACKGROUND, MportalSkinsConstant.METRO_BACKGROUND);
+			metroBackGround = portalApi.getUserProfileItem(MportalSkinsConstant.APP_MPORTALSKINS, me.getUID(),
+					MportalSkinsConstant.METRO_BACKGROUND, MportalSkinsConstant.METRO_BACKGROUND);
 			if (UtilString.isEmptyByTrim(metroBackGround))
-				metroBackGround = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_BACKGROUND);
+				metroBackGround = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+						MportalSkinsConstant.METRO_BACKGROUND);
 			if (UtilString.isEmptyByTrim(metroBackGround))
 				metroBackGround = MportalSkinsConstant.METRO_BACKGROUND_DFT;
 
-			changeBackGround = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_CHANGE_BACKGROUND);
+			changeBackGround = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+					MportalSkinsConstant.METRO_CHANGE_BACKGROUND);
 		} else {
 			// 如果指定了特定的背景图片，即使用该图片，不使用常规的背景图片，同时取消更改背景图片功能
 		}
@@ -67,7 +72,8 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		result.put("metroBackGround", metroBackGround);
 		result.put("changeBackGround", I18nRes.findValue(MportalSkinsConstant.APP_MPORTALSKINS, changeBackGround));
 		// 公司信息
-		String companyInfo = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_COMPANY_INFO);
+		String companyInfo = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				MportalSkinsConstant.METRO_COMPANY_INFO);
 		result.put("companyInfo", companyInfo);
 
 		// 用户信息：公司名称、部门名称、用户名、姓名
@@ -81,16 +87,21 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		result.put("userPhoto", portalApi.getUserPhoto(me, me.getUID()));
 		result.put("userPhotoTmp", PhotoProcessor.getTmpPhotoUrl(me, me.getUID()));
 		// 求真像
-		String isPromptUploadPortraitStr = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.USER_IS_PROMPT_UPLOAD_PORTRAIT);
+		String isPromptUploadPortraitStr = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				MportalSkinsConstant.USER_IS_PROMPT_UPLOAD_PORTRAIT);
 		boolean isPromptUploadPortrait = false;
-		isPromptUploadPortrait = MportalSkinsConstant.SYSTEM_DEFAULT_USER_PHOTO.equals(result.get("userPhoto") == null ? "" : result.get("userPhoto").toString());
+		isPromptUploadPortrait = MportalSkinsConstant.SYSTEM_DEFAULT_USER_PHOTO
+				.equals(result.get("userPhoto") == null ? "" : result.get("userPhoto").toString());
 		result.put("isPromptUploadPortrait", isPromptUploadPortrait);
 		// 新用户是否弹出上传头像窗口
 		String uploadPortraitPop = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "uploadPortraitPop");
 		result.put("uploadPortraitPop", uploadPortraitPop);
 		// 用户登录日志记录数
-		String userLoginLogCount = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.USER_LOGIN_LOG_COUNT);
-		result.put("userLoginLogCount", UtilString.isEmptyByTrim(userLoginLogCount) ? MportalSkinsConstant.USER_LOGIN_LOG_COUNT_DFT : userLoginLogCount);
+		String userLoginLogCount = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				MportalSkinsConstant.USER_LOGIN_LOG_COUNT);
+		result.put("userLoginLogCount",
+				UtilString.isEmptyByTrim(userLoginLogCount) ? MportalSkinsConstant.USER_LOGIN_LOG_COUNT_DFT
+						: userLoginLogCount);
 
 		result.put("sysAppId", AppsConst.SYS_APP_PLATFORM);
 		AppsAPIManager appsApiManager = AppsAPIManager.getInstance();
@@ -103,12 +114,14 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		// 首页子系统菜单ID
 		result.put("navHomePageId", MportalSkinsConstant.METRO_NAV_HOMEPAGE_ID);
 		// 不提供功能的AppId，例如（公众微博）
-		result.put("notPresentFuncAppId", appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_NOT_PRESENT_FUNC_APPID));
-		//公共方法  判断密码修改周期
+		result.put("notPresentFuncAppId", appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				MportalSkinsConstant.METRO_NOT_PRESENT_FUNC_APPID));
+		// 公共方法 判断密码修改周期
 		try {
 			Constructor _cons = null;
 			Class[] parameterTypes = { UserContext.class };
-			_cons = ClassReflect.getConstructor("com.actionsoft.bpms.commons.portal.pub.web.PublicPortalWeb", parameterTypes);
+			_cons = ClassReflect.getConstructor("com.actionsoft.bpms.commons.portal.pub.web.PublicPortalWeb",
+					parameterTypes);
 			if (_cons != null) {
 				Object[] paras = { me };
 				Object o = _cons.newInstance(paras);
@@ -140,7 +153,8 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 			// 默认口令验证，是否强制修改默认密码
 			Passwd passwd = new Passwd();
 			boolean forceChangePwd = false;
-			if (isSecurityPwdChange && userModel.getPassword().equals(passwd.deepMD5(AWSPortalConf.getSecurityPwdDefault()))) {
+			if (isSecurityPwdChange
+					&& userModel.getPassword().equals(passwd.deepMD5(AWSPortalConf.getSecurityPwdDefault()))) {
 				forceChangePwd = true;
 			}
 			// 验证口令修改周期
@@ -150,7 +164,8 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 				// 获取上次登录时间
 				long prevLoginTime = metroDao.getPrevLoginTime(userModel.getUID());
 				long currentTime = System.currentTimeMillis();
-				forceChangePwd = forceChangePwd || (currentTime - prevLoginTime >= (securityPwdCycle * 24 * 60 * 60 * 1000));
+				forceChangePwd = forceChangePwd
+						|| (currentTime - prevLoginTime >= (securityPwdCycle * 24 * 60 * 60 * 1000));
 			}
 			result.put("forceChangePwd", forceChangePwd);
 			result.put("isSecurityPwdComplexity", AWSPortalConf.isSecurityPwdComplexity());
@@ -177,10 +192,10 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		result.put("requiredOfficeTel", requiredOfficeTel);
 		result.put("requiredMobile", requiredMobile);
 
-		//是否强制上传头像  未修改头像的情况下
+		// 是否强制上传头像 未修改头像的情况下
 		String openThirdNavPanle = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "openThirdNavPanle");
 		result.put("openThirdNavPanle", openThirdNavPanle);
-		//左侧导航菜单面板是否默认闭合
+		// 左侧导航菜单面板是否默认闭合
 		String closeLeftNavPanel = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "closeLeftNavPanel");
 		result.put("closeLeftNavPanel", closeLeftNavPanel);
 		// 是否启用通知中心App
@@ -190,7 +205,7 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 			isStartNotification = AppsConst.RUNTIME_STATE_ACTIVE.equals(appCtx.getRuntimeState());
 		}
 		result.put("isStartNotification", isStartNotification);
-		//是否启用 移动设备
+		// 是否启用 移动设备
 		boolean isStartByodHelper = false;
 		AppContext byodHelperCtx = appApi.getAppContext(MportalSkinsConstant.APP_BYOD);
 		if (byodHelperCtx != null) {
@@ -200,19 +215,24 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		boolean notificationSoundTips = false; // 是否开启消息到达声音提醒
 		int notificationMsgLoadFrequency = 60; // notificationMsgLoadFrequency
 		if (isStartNotification) {
-			JSONObject soundTipJson = portalApi.getUserProfileSchema(MportalSkinsConstant.APP_NOTIFICATION, "admin", MportalSkinsConstant.USERPROFILE_SOUND_TIPS);
+			JSONObject soundTipJson = portalApi.getUserProfileSchema(MportalSkinsConstant.APP_NOTIFICATION, "admin",
+					MportalSkinsConstant.USERPROFILE_SOUND_TIPS);
 			if (soundTipJson != null && soundTipJson.get("soundTips") != null) {
 				notificationSoundTips = soundTipJson.getBoolean("soundTips");
 			}
-			if (!UtilString.isEmptyByTrim(appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.USER_IS_PROMPT_UPLOAD_PORTRAIT))) {
-				notificationMsgLoadFrequency = Integer.parseInt(appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.NOTIFICATION_MSG_LOAD_FREQUENCY));
+			if (!UtilString.isEmptyByTrim(appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+					MportalSkinsConstant.USER_IS_PROMPT_UPLOAD_PORTRAIT))) {
+				notificationMsgLoadFrequency = Integer.parseInt(appApi.getProperty(
+						MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.NOTIFICATION_MSG_LOAD_FREQUENCY));
 			}
 		}
 		result.put("notificationSoundTips", notificationSoundTips);
 		result.put("notificationMsgLoadFrequency", notificationMsgLoadFrequency);
-		JSONObject csslinkObj = portalApi.getUserProfileSchema(MportalSkinsConstant.APP_MPORTALSKINS, me.getUID(), MportalSkinsConstant.SKINS_CSS_LINK);
+		JSONObject csslinkObj = portalApi.getUserProfileSchema(MportalSkinsConstant.APP_MPORTALSKINS, me.getUID(),
+				MportalSkinsConstant.SKINS_CSS_LINK);
 		// 判断用户角色
-		Boolean ismanagerUser = (GradeSecurityUtil.isSuperMaster(userModel.getUID()) || GradeSecurityUtil.isSystemMaster(userModel.getUID()));
+		Boolean ismanagerUser = (GradeSecurityUtil.isSuperMaster(userModel.getUID())
+				|| GradeSecurityUtil.isSystemMaster(userModel.getUID()));
 		// 获取用户扩展信息
 		String userExtendInfo = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "userExtenInfo");
 		String userExtendInfoHtm = "";
@@ -227,7 +247,8 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 				}
 				String kk = obj.getString("key");
 				String vv = value;
-				userExtendInfoHtm += "<li id='userDesc" + i + "' ><span class='skey'><pre>" + obj.getString("key") + value + "</pre></span></li>";
+				userExtendInfoHtm += "<li id='userDesc" + i + "' ><span class='skey'><pre>" + obj.getString("key")
+						+ value + "</pre></span></li>";
 				obj.put("value", value);
 			}
 		}
@@ -275,7 +296,8 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 			navJsStr = navJsOne.getString(0);
 		}
 		// 顶部导航展示个数
-		Integer topNavShowNum = Integer.valueOf(appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "topNavShowNum"));
+		Integer topNavShowNum = Integer
+				.valueOf(appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "topNavShowNum"));
 		if (topNavShowNum < 1) {
 			topNavShowNum = 1;
 		}
@@ -338,7 +360,8 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 			favicon = favicondc.getDownloadURL();
 		}
 		String notificationShowType = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "notificationShowType");
-		String notifyCollectShowNumStr = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "notifyCollectShowNum");
+		String notifyCollectShowNumStr = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				"notifyCollectShowNum");
 		int notifyCollectShowNum = 0;
 		if (!UtilString.isEmpty(notifyCollectShowNumStr)) {
 			notifyCollectShowNum = Integer.parseInt(notifyCollectShowNumStr);
@@ -392,8 +415,9 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 		String showNavShadow = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "showNavShadow");
 		result.put("showNavShadow", showNavShadow);
 		result.put("userPosition", userModel.getPositionName());
-		//一级导航菜单id,点击该菜单，左侧导航关闭
-		String firstNavsClickCloseLeft = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, "firstNavsClickCloseLeft");
+		// 一级导航菜单id,点击该菜单，左侧导航关闭
+		String firstNavsClickCloseLeft = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				"firstNavsClickCloseLeft");
 		result.put("firstNavsClickCloseLeft", firstNavsClickCloseLeft);
 		return HtmlPageTemplate.merge(MportalSkinsConstant.APP_MPORTALSKINS, "mportal.html", result);
 	}
@@ -410,6 +434,7 @@ public class MportalSkins extends AbstPortalSkins implements PortalSkinsInterfac
 			System.err.println(appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, me, "session关闭异常"));
 		}
 		// 调转到登出页面
-		return HtmlPageTemplate.merge(AppsConst.SYS_APP_PORTAL, "client.user.sys.logout.htm", new HashMap<String, Object>());
+		return HtmlPageTemplate.merge(AppsConst.SYS_APP_PORTAL, "client.user.sys.logout.htm",
+				new HashMap<String, Object>());
 	}
 }

@@ -17,8 +17,10 @@ import com.actionsoft.bpms.commons.security.ac.model.ACAccessMode;
  * @author wangsz
  */
 public class Plugins implements PluginListener {
-	public static DCPluginProfile faviconDc = new DCPluginProfile("!favicon", FaviconFileProcessor.class.getName(), "favicon文件", false);
-	public static DCPluginProfile clogoDc = new DCPluginProfile("!clogo", ClogoFileProcessor.class.getName(), "logo文件", false);
+	public static DCPluginProfile faviconDc = new DCPluginProfile("!favicon", FaviconFileProcessor.class.getName(),
+			"favicon文件", false);
+	public static DCPluginProfile clogoDc = new DCPluginProfile("!clogo", ClogoFileProcessor.class.getName(), "logo文件",
+			false);
 
 	public Plugins() {
 	}
@@ -28,7 +30,8 @@ public class Plugins implements PluginListener {
 		list.add(new SkinsPluginProfile(MportalSkins.class.getName(), false));
 		// 注册AC权限
 		ACAccessMode[] accessModes = { new ACAccessMode("可访问门户权限", 0) };
-		String[] assignmentTypes = { ACPluginProfile.ASSN_TYPE_COMPANY, ACPluginProfile.ASSN_TYPE_DEPARTMENT, ACPluginProfile.ASSN_TYPE_ROLE, ACPluginProfile.ASSN_TYPE_TEAM, ACPluginProfile.ASSN_TYPE_USER };
+		String[] assignmentTypes = { ACPluginProfile.ASSN_TYPE_COMPANY, ACPluginProfile.ASSN_TYPE_DEPARTMENT,
+				ACPluginProfile.ASSN_TYPE_ROLE, ACPluginProfile.ASSN_TYPE_TEAM, ACPluginProfile.ASSN_TYPE_USER };
 		list.add(new ACPluginProfile("mportallocal.plugin.AC", "门户权限设置", assignmentTypes, accessModes, false, true));
 		list.add(faviconDc);
 		list.add(clogoDc);

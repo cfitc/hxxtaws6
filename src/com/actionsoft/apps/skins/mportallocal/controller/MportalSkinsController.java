@@ -90,7 +90,8 @@ public class MportalSkinsController {
 	 * @return
 	 */
 	@Mapping("com.actionsoft.apps.skins.mportallocal_update_userinfo")
-	public String updateUserInfo(UserContext me, RequestParams params, String email, String mobile, String smId, String officeFax, String officeTel) {
+	public String updateUserInfo(UserContext me, RequestParams params, String email, String mobile, String smId,
+			String officeFax, String officeTel) {
 		PortalAPI portalApi = SDK.getPortalAPI();
 		JSONObject data = new JSONObject();
 		data.put("email", email);
@@ -113,7 +114,8 @@ public class MportalSkinsController {
 		AppAPI appApi = SDK.getAppAPI();
 		// 最新登录日志记录数
 		int userLoginLogCount = MportalSkinsConstant.USER_LOGIN_LOG_COUNT_DFT;
-		String property = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.USER_LOGIN_LOG_COUNT);
+		String property = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+				MportalSkinsConstant.USER_LOGIN_LOG_COUNT);
 		if (!UtilString.isEmptyByTrim(property))
 			userLoginLogCount = Integer.parseInt(property);
 		result.put("userLoginLog", portalApi.getUserLoginLog(me, userLoginLogCount));
@@ -180,7 +182,8 @@ public class MportalSkinsController {
 	public String logout(UserContext me, String sid) {
 		PortalAPI portalApi = SDK.getPortalAPI();
 		portalApi.closeSession(sid);
-		return HtmlPageTemplate.merge(AppsConst.SYS_APP_PORTAL, "client.user.sys.logout.htm", new HashMap<String, Object>());
+		return HtmlPageTemplate.merge(AppsConst.SYS_APP_PORTAL, "client.user.sys.logout.htm",
+				new HashMap<String, Object>());
 	}
 
 	/**

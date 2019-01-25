@@ -90,7 +90,8 @@ public class MportalSkinsWeb extends ActionWeb {
 			MportalNavModel model;
 			// 获取固定的功能菜单
 			AppAPI appApi = SDK.getAppAPI();
-			String freezeFunc = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_FREEZE_FUNC);
+			String freezeFunc = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+					MportalSkinsConstant.METRO_FREEZE_FUNC);
 			if (!UtilString.isEmptyByTrim(freezeFunc)) {
 				String[] funcIds = freezeFunc.split(",");
 				for (String funcId : funcIds) {
@@ -254,7 +255,8 @@ public class MportalSkinsWeb extends ActionWeb {
 			MportalNavModel model;
 			// 获取固定的功能菜单
 			AppAPI appApi = SDK.getAppAPI();
-			String freezeFunc = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS, MportalSkinsConstant.METRO_FREEZE_FUNC);
+			String freezeFunc = appApi.getProperty(MportalSkinsConstant.APP_MPORTALSKINS,
+					MportalSkinsConstant.METRO_FREEZE_FUNC);
 			String[] funcIds = freezeFunc.split(",");
 			for (String funcId : funcIds) {
 				model = new MportalNavModel();
@@ -322,7 +324,10 @@ public class MportalSkinsWeb extends ActionWeb {
 			try {
 				portletNotifier = PortletNotifier.createNotifierInstance(app, notifier);
 			} catch (NullPointerException e) {
-				AppsLogger.err(app, appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "信息推送接口") + "[" + notifier + "]。" + appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "不存在") + e.getMessage());
+				AppsLogger.err(app,
+						appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "信息推送接口") + "[" + notifier
+								+ "]。" + appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "不存在")
+								+ e.getMessage());
 				e.printStackTrace();
 			} catch (Exception e) {
 				AppsLogger.err(app, e.getMessage());
@@ -409,7 +414,10 @@ public class MportalSkinsWeb extends ActionWeb {
 			try {
 				portletNotifier = PortletNotifier.createNotifierInstance(app, notifier);
 			} catch (NullPointerException e) {
-				AppsLogger.err(app, appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "信息推送接口") + "[" + notifier + "]。" + appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "不存在") + e.getMessage());
+				AppsLogger.err(app,
+						appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "信息推送接口") + "[" + notifier
+								+ "]。" + appApi.i18NValue(MportalSkinsConstant.APP_MPORTALSKINS, getContext(), "不存在")
+								+ e.getMessage());
 				e.printStackTrace();
 			} catch (Exception e) {
 				AppsLogger.err(app, e.getMessage());
@@ -438,7 +446,8 @@ public class MportalSkinsWeb extends ActionWeb {
 		ResponseObject result = ResponseObject.newOkResponse();
 		try {
 			PortalAPI portalApi = SDK.getPortalAPI();
-			boolean bool = portalApi.setUserProfileItem(MportalSkinsConstant.APP_MPORTALSKINS, getContext().getUID(), MportalSkinsConstant.METRO_BACKGROUND, MportalSkinsConstant.METRO_BACKGROUND, metroBackGround);
+			boolean bool = portalApi.setUserProfileItem(MportalSkinsConstant.APP_MPORTALSKINS, getContext().getUID(),
+					MportalSkinsConstant.METRO_BACKGROUND, MportalSkinsConstant.METRO_BACKGROUND, metroBackGround);
 			if (!bool)
 				result.err("设置背景图片失败");
 		} catch (Exception e) {
@@ -582,13 +591,13 @@ public class MportalSkinsWeb extends ActionWeb {
 	/**
 	 * 图像切割(按指定起点坐标和宽高切割)
 	 *
-	 * @param srcImageFile 源图像地址
+	 * @param srcImageFile  源图像地址
 	 * @param destImageFile 切片后的图像
-	 * @param x 目标切片起点坐标X
-	 * @param y 目标切片起点坐标Y
-	 * @param width 目标切片宽度
-	 * @param height 目标切片高度
-	 * @param ratio 图像缩放比例
+	 * @param x             目标切片起点坐标X
+	 * @param y             目标切片起点坐标Y
+	 * @param width         目标切片宽度
+	 * @param height        目标切片高度
+	 * @param ratio         图像缩放比例
 	 */
 	public void cut(String srcImageFile, File destImageFile, int x, int y, int width, int height, double ratio) {
 		try {
@@ -631,7 +640,8 @@ public class MportalSkinsWeb extends ActionWeb {
 				// 四个参数分别为图像起点坐标和宽高
 				// 即: CropImageFilter(int x,int y,int width,int height)
 				ImageFilter cropFilter = new CropImageFilter(x, y, width, height);
-				Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(bi.getSource(), cropFilter));
+				Image img = Toolkit.getDefaultToolkit()
+						.createImage(new FilteredImageSource(bi.getSource(), cropFilter));
 				BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 				Graphics g2 = tag.getGraphics();
 				g2.drawImage(img, 0, 0, width, height, null); // 绘制切割后的图
@@ -701,7 +711,8 @@ public class MportalSkinsWeb extends ActionWeb {
 		PortalAPI portalApi = SDK.getPortalAPI();
 		JSONObject json = new JSONObject();
 		json.put("csslink", csslink);
-		Boolean bol = SDK.getPortalAPI().setUserProfileSchema(MportalSkinsConstant.APP_MPORTALSKINS, me.getUID(), MportalSkinsConstant.SKINS_CSS_LINK, json);
+		Boolean bol = SDK.getPortalAPI().setUserProfileSchema(MportalSkinsConstant.APP_MPORTALSKINS, me.getUID(),
+				MportalSkinsConstant.SKINS_CSS_LINK, json);
 		result.put("rs", bol);
 		return result.toString();
 	}
@@ -836,7 +847,8 @@ public class MportalSkinsWeb extends ActionWeb {
 				favicondc.setFileName("favicon.ico");
 				String npath = favicondc.getFilePath();
 				try {
-					UtilIO.copy(new DataInputStream(new FileInputStream(tempPath)), new DataOutputStream(new FileOutputStream(npath)));
+					UtilIO.copy(new DataInputStream(new FileInputStream(tempPath)),
+							new DataOutputStream(new FileOutputStream(npath)));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -851,7 +863,8 @@ public class MportalSkinsWeb extends ActionWeb {
 					clogodc.setFileName("clogo.jpg");
 					String npath = clogodc.getFilePath();
 					try {
-						UtilIO.copy(new DataInputStream(new FileInputStream(tempPath)), new DataOutputStream(new FileOutputStream(npath)));
+						UtilIO.copy(new DataInputStream(new FileInputStream(tempPath)),
+								new DataOutputStream(new FileOutputStream(npath)));
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -978,8 +991,16 @@ public class MportalSkinsWeb extends ActionWeb {
 			headStr = headStr.replace(searchwords, impStr);
 			String msgSummary = msg.getString("msgSummary");
 			msgSummary = msgSummary.replace(searchwords, impStr);
-			html += "  <div class='info-item-panel'><div class='sinfo-head'>" + "<div class='sinfo-title'  id='" + msg.getString("id") + "' siteid='" + msg.getString("siteId") + "'>" + "<span><a onclick=\"showSearchInfo('" + msg.getString("id") + "','" + msg.getString("siteId") + "','" + msg.getString("outUrl") + "')\">" + headStr + "</a></span></div>" + "<div class='sinfo-data'><span>" + msg.getString("createTime") + "</span></div></div>" + "<div class='info-desc'><div class='msg-div' onclick=\"showSearchInfo('" + msg.getString("id") + "','" + msg.getString("siteId")
-					+ "')\"><a href='#'>" + msgSummary + "</a></div><div class='position-div'><span>位置：" + msg.getString("moduleName") + "</span><span>" + msg.getString("createUser") + "</span><span>点击量：" + msg.getString("hasAttachment") + "</span></div></div></div>";
+			html += "  <div class='info-item-panel'><div class='sinfo-head'>" + "<div class='sinfo-title'  id='"
+					+ msg.getString("id") + "' siteid='" + msg.getString("siteId") + "'>"
+					+ "<span><a onclick=\"showSearchInfo('" + msg.getString("id") + "','" + msg.getString("siteId")
+					+ "','" + msg.getString("outUrl") + "')\">" + headStr + "</a></span></div>"
+					+ "<div class='sinfo-data'><span>" + msg.getString("createTime") + "</span></div></div>"
+					+ "<div class='info-desc'><div class='msg-div' onclick=\"showSearchInfo('" + msg.getString("id")
+					+ "','" + msg.getString("siteId") + "')\"><a href='#'>" + msgSummary
+					+ "</a></div><div class='position-div'><span>位置：" + msg.getString("moduleName") + "</span><span>"
+					+ msg.getString("createUser") + "</span><span>点击量：" + msg.getString("hasAttachment")
+					+ "</span></div></div></div>";
 
 		}
 		result.put("showhtml", html);
